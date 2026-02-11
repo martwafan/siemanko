@@ -14,43 +14,48 @@
             font-family: Arial, sans-serif;
         }
 
-        .heart {
+        .heart-wrapper {
             position: relative;
-            width: 600px;
-            height: 550px;
-            background-color: black;
-            transform: rotate(-45deg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 350px;
+            height: 320px;
         }
 
-        .heart::before,
-        .heart::after {
+        .heart {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: black;
+            top: 70px;
+            left: 85px;
+            transform: rotate(-45deg);
+        }
+
+        .heart:before,
+        .heart:after {
             content: "";
             position: absolute;
-            width: 600px;
-            height: 550px;
-            background-color: black;
+            width: 180px;
+            height: 180px;
+            background: black;
             border-radius: 50%;
         }
 
-        .heart::before {
-            top: -300px;
+        .heart:before {
+            top: -90px;
             left: 0;
         }
 
-        .heart::after {
-            left: 300px;
+        .heart:after {
+            left: 90px;
             top: 0;
         }
 
         .content {
             position: absolute;
-            transform: rotate(45deg);
+            width: 100%;
             text-align: center;
+            top: 40px;
             color: white;
-            width: 80%;
         }
 
         h1 {
@@ -60,18 +65,17 @@
         .characters {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .character {
             cursor: pointer;
-            text-align: center;
             transition: 0.3s;
         }
 
         .character img {
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             border-radius: 10px;
             object-fit: cover;
             border: 2px solid white;
@@ -83,36 +87,37 @@
 
         .character p {
             margin-top: 5px;
+            font-size: 14px;
             color: white;
         }
     </style>
 </head>
 <body>
 
-    <div class="heart">
+    <div class="heart-wrapper">
+        <div class="heart"></div>
+
         <div class="content">
             <h1>Wybierz postać</h1>
 
             <div class="characters">
                 <div class="character" onclick="window.location.href='strona1.html'">
-                    <img src="https://via.placeholder.com/100" alt="Postać 1">
+                    <img src="https://via.placeholder.com/70" alt="Postać 1">
                     <p>Postać 1</p>
                 </div>
 
                 <div class="character" onclick="window.location.href='strona1.html'">
-                    <img src="https://via.placeholder.com/100" alt="Postać 2">
+                    <img src="https://via.placeholder.com/70" alt="Postać 2">
                     <p>Postać 2</p>
                 </div>
 
                 <div class="character" onclick="window.location.href='strona1.html'">
-                    <img src="https://via.placeholder.com/100" alt="Postać 3">
+                    <img src="https://via.placeholder.com/70" alt="Postać 3">
                     <p>Postać 3</p>
                 </div>
             </div>
-
         </div>
     </div>
 
 </body>
 </html>
-
