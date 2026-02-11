@@ -11,14 +11,17 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background: linear-gradient(to bottom, white, red); /* pionowy gradient */
+            background: linear-gradient(to bottom, white, red);
             font-family: Arial, sans-serif;
             text-align: center;
+            overflow: hidden; /* żeby serduszka nie wychodziły poza ekran */
         }
 
         h1 {
             font-size: 36px;
             color: black;
+            z-index: 1; /* nad serduszkami */
+            position: relative;
         }
 
         button {
@@ -31,11 +34,49 @@
             background-color: black;
             color: white;
             transition: 0.3s;
+            z-index: 1;
+            position: relative;
         }
 
         button:hover {
             background-color: #333;
             transform: scale(1.05);
+        }
+
+        /* Styl dla latających serduszek */
+        .floating-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            transform: rotate(-45deg);
+            animation: floatUp linear;
+            border-radius: 50%;
+        }
+
+        .floating-heart:before,
+        .floating-heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            border-radius: 50%;
+        }
+
+        .floating-heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .floating-heart:after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
         }
     </style>
 </head>
@@ -46,6 +87,36 @@
     <button onclick="window.location.href='pytanie1.html'">
         Tak
     </button>
+
+    <script>
+        // Funkcja tworząca serduszko
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+
+            // losowa pozycja pozioma
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+
+            // losowy czas trwania animacji (3-5s)
+            heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+
+            // losowy rozmiar
+            const size = 10 + Math.random() * 20;
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            heart.style.setProperty('--size', size + 'px');
+
+            document.body.appendChild(heart);
+
+            // usuwanie po animacji
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Tworzenie serduszek co 300ms
+        setInterval(createHeart, 300);
+    </script>
 
 </body>
 </html>
