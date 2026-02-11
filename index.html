@@ -1,122 +1,80 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Pytania</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background: linear-gradient(to bottom, white, red);
-            font-family: Arial, sans-serif;
-            text-align: center;
-            overflow: hidden; /* żeby serduszka nie wychodziły poza ekran */
-        }
+<meta charset="UTF-8">
+<title>Pytania</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, white, red);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* żeby obrazki nie wychodziły poza ekran */
+}
 
-        h1 {
-            font-size: 36px;
-            color: black;
-            z-index: 1; /* nad serduszkami */
-            position: relative;
-        }
+h1, button {
+    position: relative;
+    z-index: 1; /* nad animacją */
+    text-align: center;
+}
 
-        button {
-            margin-top: 30px;
-            padding: 15px 40px;
-            font-size: 18px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            background-color: black;
-            color: white;
-            transition: 0.3s;
-            z-index: 1;
-            position: relative;
-        }
+h1 {
+    font-size: 36px;
+    color: black;
+    margin-bottom: 30px;
+}
 
-        button:hover {
-            background-color: #333;
-            transform: scale(1.05);
-        }
+button {
+    padding: 15px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        /* Styl dla latających serduszek */
-        .floating-heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: pink;
-            transform: rotate(-45deg);
-            animation: floatUp linear;
-            border-radius: 50%;
-        }
-
-        .floating-heart:before,
-        .floating-heart:after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: pink;
-            border-radius: 50%;
-        }
-
-        .floating-heart:before {
-            top: -10px;
-            left: 0;
-        }
-
-        .floating-heart:after {
-            left: 10px;
-            top: 0;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
-        }
-    </style>
+button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+</style>
 </head>
 <body>
 
-    <h1>Czy jesteś gotowy na kilka pytań?</h1>
+<h1>Czy jesteś gotowy na kilka pytań?</h1>
+<button onclick="window.location.href='pytanie1.html'">Tak</button>
 
-    <button onclick="window.location.href='pytanie1.html'">
-        Tak
-    </button>
-
-    <script>
-        // Funkcja tworząca serduszko
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
-
-            // losowa pozycja pozioma
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-
-            // losowy czas trwania animacji (3-5s)
-            heart.style.animationDuration = (3 + Math.random() * 2) + 's';
-
-            // losowy rozmiar
-            const size = 10 + Math.random() * 20;
-            heart.style.width = size + 'px';
-            heart.style.height = size + 'px';
-            heart.style.setProperty('--size', size + 'px');
-
-            document.body.appendChild(heart);
-
-            // usuwanie po animacji
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-
-        // Tworzenie serduszek co 300ms
-        setInterval(createHeart, 300);
-    </script>
-
-</body>
-</html>
+<script>
+// Funkcja tworząca latające PNG
+function createHeart() {
+    const img = document.createElement('img');
+    img.src = 'serce.png'; // Twój PNG
+    img.style.position = 'absolute';
+    
+    // losowa pozycja pozioma
+    img.style.left = Math.random() * window.innerWidth + 'px';
+    
+    // losowy rozmiar (20-60px)
+    const size = 20 + Math.random() * 40;
+    img.style.width = size + 'px';
+    img.style.height = size + 'px';
+    
+    // animacja - unoszenie się w górę
+    const duration = 3 + Math.random() * 2; // 3-5 sekund
+    img.style.transition = `transform ${duration}s linear, opacity ${duration}s linear`;
+    
+    document.body.appendChild(img);
+    
+    // startowa pozycja
+    img.style.transform = `translateY(0px)`;
+    img.style.opacity = '1';
+    
+    // końcowa pozycja po krótkim delayu
+    setTimeout(() => {
+        img.style.transform = `translateY(-${window
