@@ -2,28 +2,117 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Pytanie 1</title>
+    <title>Wybierz postać</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
+            background-color: red;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to right, red, white);
             font-family: Arial, sans-serif;
+        }
+
+        .heart {
+            position: relative;
+            width: 600px;
+            height: 550px;
+            background-color: black;
+            transform: rotate(-45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 550px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -300px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 300px;
+            top: 0;
+        }
+
+        .content {
+            position: absolute;
+            transform: rotate(45deg);
             text-align: center;
+            color: white;
+            width: 80%;
         }
 
         h1 {
-            font-size: 36px;
-            color: black;
+            margin-bottom: 20px;
+        }
+
+        .characters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .character {
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .character img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
+        .character:hover {
+            transform: scale(1.1);
+        }
+
+        .character p {
+            margin-top: 5px;
+            color: white;
         }
     </style>
 </head>
 <body>
 
-    <h1>Oto pierwsze pytanie 😉</h1>
+    <div class="heart">
+        <div class="content">
+            <h1>Wybierz postać</h1>
+
+            <div class="characters">
+                <div class="character" onclick="window.location.href='strona1.html'">
+                    <img src="https://via.placeholder.com/100" alt="Postać 1">
+                    <p>Postać 1</p>
+                </div>
+
+                <div class="character" onclick="window.location.href='strona1.html'">
+                    <img src="https://via.placeholder.com/100" alt="Postać 2">
+                    <p>Postać 2</p>
+                </div>
+
+                <div class="character" onclick="window.location.href='strona1.html'">
+                    <img src="https://via.placeholder.com/100" alt="Postać 3">
+                    <p>Postać 3</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </body>
 </html>
+
