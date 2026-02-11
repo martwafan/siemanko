@@ -13,12 +13,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* żeby obrazki nie wychodziły poza ekran */
+    overflow: hidden;
 }
 
 h1, button {
     position: relative;
-    z-index: 1; /* nad animacją */
+    z-index: 1;
     text-align: center;
 }
 
@@ -47,34 +47,43 @@ button:hover {
 </head>
 <body>
 
-<h1>Czy jesteś gotowy na kilka pytań?</h1>
-<button onclick="window.location.href='pytanie1.html'">Tak</button>
+<h1>Hejka kocie <3</h1>
+<button onclick="window.location.href='pytanie1.html'">dalej</button>
 
 <script>
-// Funkcja tworząca latające PNG
 function createHeart() {
     const img = document.createElement('img');
-    img.src = 'serce.png'; // Twój PNG
+    img.src = 'heart.png'; // Twój PNG
     img.style.position = 'absolute';
     
-    // losowa pozycja pozioma
-    img.style.left = Math.random() * window.innerWidth + 'px';
-    
-    // losowy rozmiar (20-60px)
-    const size = 20 + Math.random() * 40;
+    const size = 20 + Math.random() * 40; // 20-60px
     img.style.width = size + 'px';
     img.style.height = size + 'px';
     
-    // animacja - unoszenie się w górę
-    const duration = 3 + Math.random() * 2; // 3-5 sekund
-    img.style.transition = `transform ${duration}s linear, opacity ${duration}s linear`;
-    
-    document.body.appendChild(img);
-    
-    // startowa pozycja
-    img.style.transform = `translateY(0px)`;
+    img.style.left = Math.random() * window.innerWidth + 'px';
+    img.style.bottom = '-50px'; // start poza ekranem
     img.style.opacity = '1';
     
-    // końcowa pozycja po krótkim delayu
+    document.body.appendChild(img);
+
+    const duration = 3000 + Math.random() * 2000; // 3-5s
+
+    // zmiana pozycji po minimalnym opóźnieniu, żeby transition zadziałało
     setTimeout(() => {
-        img.style.transform = `translateY(-${window
+        img.style.transition = `transform ${duration}ms linear, opacity ${duration}ms linear`;
+        img.style.transform = `translateY(-${window.innerHeight + 50}px)`; // lecimy w górę
+        img.style.opacity = '0';
+    }, 50);
+
+    // usuń po animacji
+    setTimeout(() => img.remove(), duration + 100);
+}
+
+// generowanie co 300ms
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
+
+
