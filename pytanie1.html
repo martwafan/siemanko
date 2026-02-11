@@ -7,7 +7,7 @@
         body {
             margin: 0;
             height: 100vh;
-            background-color: red;
+            background: radial-gradient(circle, white 0%, red 100%); /* gradient od środka */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,17 +16,17 @@
 
         .heart-wrapper {
             position: relative;
-            width: 450px;   /* większe serce */
-            height: 400px;
+            width: 500px;   /* większe serce */
+            height: 450px;
         }
 
         .heart {
             position: absolute;
-            width: 220px;
-            height: 220px;
+            width: 260px;  /* większe */
+            height: 260px;
             background: black;
-            top: 90px;
-            left: 115px;
+            top: 95px;
+            left: 120px;
             transform: rotate(-45deg);
         }
 
@@ -34,19 +34,19 @@
         .heart:after {
             content: "";
             position: absolute;
-            width: 220px;
-            height: 220px;
+            width: 260px;
+            height: 260px;
             background: black;
             border-radius: 50%;
         }
 
         .heart:before {
-            top: -110px;
+            top: -130px;
             left: 0;
         }
 
         .heart:after {
-            left: 110px;
+            left: 130px;
             top: 0;
         }
 
@@ -54,13 +54,13 @@
             position: absolute;
             width: 100%;
             text-align: center;
-            top: 50px;
+            top: 40px;
             color: white;
         }
 
         h1 {
             margin-bottom: 30px;
-            font-size: 24px;
+            font-size: 26px;
         }
 
         .answers {
