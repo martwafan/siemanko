@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Wybierz postać</title>
+    <title>Wybierz odpowiedź</title>
     <style>
         body {
             margin: 0;
@@ -16,17 +16,17 @@
 
         .heart-wrapper {
             position: relative;
-            width: 350px;
-            height: 320px;
+            width: 450px;   /* większe serce */
+            height: 400px;
         }
 
         .heart {
             position: absolute;
-            width: 180px;
-            height: 180px;
+            width: 220px;
+            height: 220px;
             background: black;
-            top: 70px;
-            left: 85px;
+            top: 90px;
+            left: 115px;
             transform: rotate(-45deg);
         }
 
@@ -34,19 +34,19 @@
         .heart:after {
             content: "";
             position: absolute;
-            width: 180px;
-            height: 180px;
+            width: 220px;
+            height: 220px;
             background: black;
             border-radius: 50%;
         }
 
         .heart:before {
-            top: -90px;
+            top: -110px;
             left: 0;
         }
 
         .heart:after {
-            left: 90px;
+            left: 110px;
             top: 0;
         }
 
@@ -54,41 +54,35 @@
             position: absolute;
             width: 100%;
             text-align: center;
-            top: 40px;
+            top: 50px;
             color: white;
         }
 
         h1 {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 24px;
         }
 
-        .characters {
+        .answers {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 40px;
         }
 
-        .character {
+        .answer {
             cursor: pointer;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            background-color: black;
             transition: 0.3s;
         }
 
-        .character img {
-            width: 70px;
-            height: 70px;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 2px solid white;
-        }
-
-        .character:hover {
-            transform: scale(1.1);
-        }
-
-        .character p {
-            margin-top: 5px;
-            font-size: 14px;
-            color: white;
+        .answer:hover {
+            background-color: #333;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -98,23 +92,11 @@
         <div class="heart"></div>
 
         <div class="content">
-            <h1>Wybierz postać</h1>
+            <h1>Czy zostaniesz moją walentynką?</h1>
 
-            <div class="characters">
-                <div class="character" onclick="window.location.href='strona1.html'">
-                    <img src="https://via.placeholder.com/70" alt="Postać 1">
-                    <p>Postać 1</p>
-                </div>
-
-                <div class="character" onclick="window.location.href='strona1.html'">
-                    <img src="https://via.placeholder.com/70" alt="Postać 2">
-                    <p>Postać 2</p>
-                </div>
-
-                <div class="character" onclick="window.location.href='strona1.html'">
-                    <img src="https://via.placeholder.com/70" alt="Postać 3">
-                    <p>Postać 3</p>
-                </div>
+            <div class="answers">
+                <button class="answer" onclick="window.location.href='tak1.html'">Tak!</button>
+                <button class="answer" onclick="window.location.href='nie1.html'">Nie…</button>
             </div>
         </div>
     </div>
