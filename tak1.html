@@ -41,23 +41,21 @@ body {
     height: 60px;
 }
 
-/* przycisk pod sercem */
+/* przycisk pod sercami */
 .content {
     position: absolute;
-    top: 80%;
+    top: 85%; /* pod sercami */
     width: 100%;
     text-align: center;
-    color: white;
-    z-index: 1;
+    z-index: 2;
 }
 
 button {
     padding: 12px 25px;
-    font-size: 16px;
+    font-size: 20px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    margin: 0 10px;
     background-color: black;
     color: white;
     transition: 0.3s;
@@ -71,10 +69,7 @@ button:hover {
 </head>
 <body>
 
-<audio autoplay loop>
-    <source src="happy-happy-happy-song.mp3" type="audio/mpeg">
-</audio>
-
+<!-- Centralne serca -->
 <div class="heart-wrapper">
     <img src="serce_czerwone.png" class="heart" style="width:370px; height:370px; z-index:1;">
     <img src="serce_biale.png" class="heart" style="width:330px; height:330px; z-index:2;">
@@ -85,6 +80,15 @@ button:hover {
     <img src="https://media1.tenor.com/m/RiZpodi6JD0AAAAC/fast-cat-cat-excited.gif" class="gif" style="z-index:6;">
 </div>
 
+<!-- Przycisk do odtwarzania muzyki -->
+<div class="content">
+    <button id="playMusicButton">🎵</button>
+</div>
+
+<!-- Audio bez autoplay -->
+<audio id="backgroundMusic">
+    <source src="happy-happy-happy-song.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 // Funkcja tworząca latające PNG serduszka
@@ -115,6 +119,14 @@ function createFlyingHeart() {
 
 // Tworzenie serduszek co 300ms
 setInterval(createFlyingHeart, 300);
+
+// Przycisk uruchamiający muzykę
+const music = document.getElementById('backgroundMusic');
+const button = document.getElementById('playMusicButton');
+
+button.addEventListener('click', () => {
+    music.play(); // odtwarza Twój plik MP3 po kliknięciu
+});
 </script>
 
 </body>
