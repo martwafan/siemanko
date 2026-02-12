@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Tak! – Wybór postaci</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle, white 0%, red 100%);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Centralne serca */
+.heart-wrapper {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    border-radius: 50%;
+}
+
+.heart1 { width: 300px; height: 300px; background: red; }
+.heart2 { width: 250px; height: 250px; background: white; }
+.heart3 { width: 200px; height: 200px; background: black; }
+.heart4 { width: 150px; height: 150px; background: red; }
+.heart5 { width: 100px; height: 100px; background: white; }
+
+/* Tworzenie kół w sercach */
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.heart::before { top: -50%; left: 0; }
+.heart::after { left: 50%; top: 0; }
+
+/* GIF w środku najmniejszego serca */
+.heart5 img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+/* przycisk pod sercem */
+.content {
+    position: absolute;
+    top: 80%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    background-color: black;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<!-- Centralne serca -->
+<div class="heart-wrapper">
+    <div class="heart heart1"></div>
+    <div class="heart heart2"></div>
+    <div class="heart heart3"></div>
+    <div class="heart heart4"></div>
+    <div class="heart heart5">
+        <img src="https://media1.tenor.com/m/RiZpodi6JD0AAAAC/fast-cat-cat-excited.gif" alt="GIF">
+    </div>
+</div>
+
+
+<script>
+// Funkcja tworząca latające PNG serduszka
+function createFlyingHeart() {
+    const img = document.createElement('img');
+    img.src = 'serce.png'; // Twój PNG
+    img.style.position = 'absolute';
+    
+    const size = 20 + Math.random() * 40; // losowy rozmiar
+    img.style.width = size + 'px';
+    img.style.height = size + 'px';
+    
+    img.style.left = Math.random() * window.innerWidth + 'px';
+    img.style.bottom = '-50px';
+    
+    const duration = 3000 + Math.random() * 3000; // czas lotu 3-6s
+    img.style.transition = `transform ${duration}ms linear, opacity ${duration}ms linear`;
+    
+    document.body.appendChild(img);
+    
+    setTimeout(() => {
+        img.style.transform = `translateY(-${window.innerHeight + 50}px)`;
+        img.style.opacity = '0';
+    }, 50);
+    
+    setTimeout(() => img.remove(), duration + 100);
+}
+
+// Tworzenie serduszek co 300ms
+setInterval(createFlyingHeart, 300);
+</script>
+
+</body>
+</html>
